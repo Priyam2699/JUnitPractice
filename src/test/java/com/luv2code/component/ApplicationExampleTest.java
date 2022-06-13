@@ -2,10 +2,7 @@ package com.luv2code.component;
 
 import com.luv2code.component.models.CollegeStudent;
 import com.luv2code.component.models.StudentGrades;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -59,10 +56,26 @@ public class ApplicationExampleTest {
         student.setFirstname("Priyam");
         student.setLastname("Dua");
         student.setEmailAddress("priyamduua26@gmail.com");
-        studentGrades.setMathGradeResults(new ArrayList<Double>(Arrays.asList(100.2, 8.555, 76.12, 91.40)));
+        studentGrades.setMathGradeResults(new ArrayList<Double>(Arrays.asList(100.0, 85.0, 76.50, 91.75)));
         student.setStudentGrades(studentGrades);
     }
 
 
+    @DisplayName("add grade results for students ")
+    @Test
+    public void Test_addGradeResultsForStudentGradesEquals() {
+        {
+            Assertions.assertEquals(353.25,studentGrades.addGradeResultsForSingleClass(student.getStudentGrades().getMathGradeResults()));
+        }
+    }
+
+
+    @DisplayName("add grade results for students not equal")
+    @Test
+    public void Test_addGradeResultsForStudentGradesNotEquals() {
+        {
+            Assertions.assertEquals(0,studentGrades.addGradeResultsForSingleClass(student.getStudentGrades().getMathGradeResults()));
+        }
+    }
 
 }
