@@ -6,6 +6,7 @@ import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.ApplicationContext;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -36,6 +37,13 @@ public class ApplicationExampleTest {
 
     @Autowired
     StudentGrades studentGrades;
+
+    @Autowired
+    CollegeStudent collegeStudent;
+
+
+    @Autowired
+    ApplicationContext applicationContext;
 
 
     @Test
@@ -105,5 +113,26 @@ public class ApplicationExampleTest {
     {
         Assertions.assertNull(studentGrades.checkNull(student.getStudentGrades().getMathGradeResults()), "Object should not be null");
     }
+
+
+    @DisplayName("Create student without grade init")
+    @Test
+    public void createStudentWithoutGradeInit()
+    {
+
+
+        CollegeStudent student1  = applicationContext.getBean("collegeStudent",CollegeStudent.class);
+
+        student1.setFirstname("Priyam");
+        student1.setLastname("Dua");
+        student1.setEmailAddress("priyamdua26@gmail.com");
+        Assertions.assertNotNull(student1.getFirstname());
+        Assertions.assertNotNull(student1.getLastname());
+        Assertions.assertNotNull(student1.getEmailAddress());
+        Assertions.assertNull(studentGrades.checkNull(student1.getStudentGrades()));
+    }
+
+
+
 
 }
