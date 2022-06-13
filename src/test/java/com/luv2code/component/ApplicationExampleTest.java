@@ -78,4 +78,32 @@ public class ApplicationExampleTest {
         }
     }
 
+
+
+    @DisplayName("Is grade greater")
+    @Test
+    public void TestisGrdeGreaterStudentGrades()
+    {
+        Assertions.assertTrue(studentGrades.isGradeGreater(80,75),"failure - should be true");
+    }
+
+
+
+    @DisplayName("is grade greater false")
+    @Test
+    public void isGradeGreaterStudentGradesFalse() {
+        {
+            Assertions.assertFalse(studentGrades.isGradeGreater(89,92),"failure - should be false");
+        }
+    }
+
+
+
+    @DisplayName("Check Null for student grades")
+    @Test
+    public void checkNullForStudentGrades()
+    {
+        Assertions.assertNull(studentGrades.checkNull(student.getStudentGrades().getMathGradeResults()), "Object should not be null");
+    }
+
 }
